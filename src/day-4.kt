@@ -12,13 +12,13 @@ private fun partOne(): Int {
             .split("\n")
             .filter { it != "" }
             .sorted()
+            .map(::parseLine)
 
     val guardsSleepingTimes = hashMapOf<Int, IntArray>()
     var currentGuard = -1
     var fallAsleepTime = LocalDateTime.MIN
 
-    for (line in datetimeAndActions) {
-        val (dateTime, action) = parseLine(line)
+    for ((dateTime, action) in datetimeAndActions) {
         if (action[0] == 'G') {
             currentGuard = action.filter { it.isDigit() }.toInt()
             fallAsleepTime = dateTime
@@ -44,13 +44,13 @@ private fun partTwo(): Int {
             .split("\n")
             .filter { it != "" }
             .sorted()
+            .map(::parseLine)
 
     val guardsSleepingTimes = hashMapOf<Int, IntArray>()
     var currentGuard = -1
     var fallAsleepTime = LocalDateTime.MIN
 
-    for (line in datetimeAndActions) {
-        val (dateTime, action) = parseLine(line)
+    for ((dateTime, action) in datetimeAndActions) {
         if (action[0] == 'G') {
             currentGuard = action.filter { it.isDigit() }.toInt()
             fallAsleepTime = dateTime
