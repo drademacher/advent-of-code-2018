@@ -30,16 +30,6 @@ private fun partOne(): String {
     return "$xResult,$yResult"
 }
 
-private fun computeSquare(field: Array<IntArray>, i: Int, j: Int, size: Int): Int {
-    var squareSum = 0
-    for (a in 0 until size) {
-        for (b in 0 until size) {
-            squareSum += field[i + a][j + b]
-        }
-    }
-    return squareSum
-}
-
 private fun partTwo(): String {
     // TODO: this is very unoptimized, should run in under 1s
     val serial = 7400
@@ -71,6 +61,16 @@ private fun partTwo(): String {
     return "$xResult,$yResult,$sizeResult"
 }
 
+private fun computeSquare(field: Array<IntArray>, i: Int, j: Int, size: Int): Int {
+    var squareSum = 0
+    for (a in 0 until size) {
+        for (b in 0 until size) {
+            squareSum += field[i + a][j + b]
+        }
+    }
+    return squareSum
+}
+
 private fun computeAllPowerLevels(n: Int, field: Array<IntArray>, serial: Int) {
     for (i in 0 until n) {
         for (j in 0 until n) {
@@ -79,12 +79,11 @@ private fun computeAllPowerLevels(n: Int, field: Array<IntArray>, serial: Int) {
     }
 }
 
-
 private fun powerLevel(x: Int, y: Int, serial: Int): Int {
     val rackId = x + 10
     val powerLevel = (rackId * y + serial) * rackId
-    val hundredDigit = (powerLevel % 1000) / 100 - 5
-    return hundredDigit
+    val hundredDigit = (powerLevel % 1000) / 100
+    return hundredDigit - 5
 }
 
 private fun runTestSamples() {
