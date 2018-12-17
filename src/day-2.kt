@@ -8,7 +8,7 @@ fun main(args: Array<String>) {
 private fun partOne(): Int {
     val rawFile = File("res/day-2.txt").readText()
 
-    val charactersGroupedByLength = rawFile // returns 435
+    val charactersGroupedByLength = rawFile
             .split("\n")
             .filter { it != "" }
             .map { box -> box.toCharArray() }
