@@ -25,7 +25,7 @@ data class RegisterState(var a: Int, var b: Int, var c: Int, var d: Int) {
 }
 
 fun main(args: Array<String>) {
-    runTests()
+    // runTests()
     println("part 1: " + partOne())
     println("part 2: " + partTwo())
 }
@@ -45,7 +45,7 @@ private fun partOne(): Int {
         val resultingState = RegisterState(sndNumbers[0], sndNumbers[1], sndNumbers[2], sndNumbers[3])
 
         val numberOfPossibleFunctions = getAllFunctions()
-                .map { func -> func.call(initialState, instruction[1], instruction[2], instruction[3]) }
+                .map { func -> func(initialState, instruction[1], instruction[2], instruction[3]) }
                 .filter { it == resultingState }
                 .size
 
@@ -172,11 +172,11 @@ fun RegisterState.bori(x: Int, y: Int, z: Int): RegisterState {
     return this.copy().setByPointer(z, value)
 }
 
-fun RegisterState.setr(x: Int, y: Int, z: Int): RegisterState {
+fun RegisterState.setr(x: Int, ignore: Int, z: Int): RegisterState {
     return this.copy().setByPointer(z, getByPointer(x))
 }
 
-fun RegisterState.seti(x: Int, y: Int, z: Int): RegisterState {
+fun RegisterState.seti(x: Int, ignore: Int, z: Int): RegisterState {
     return this.copy().setByPointer(z, x)
 }
 
